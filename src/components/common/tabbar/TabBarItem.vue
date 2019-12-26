@@ -49,7 +49,7 @@ export default {
   height: 45%;
   width: 25%;
   vertical-align: middle;
-  margin-top: 3px;
+  margin-top: 7px;
   margin-bottom: 2px;
 }
 .tabbar-item span{
