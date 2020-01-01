@@ -37,7 +37,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  mode: 'history',
+  // mode: 'history', //路由模式
   base: process.env.BASE_URL,
   routes
 })

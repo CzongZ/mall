@@ -39,7 +39,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .tabbar-item{
   flex: 1;
   text-align: center;
@@ -49,7 +49,7 @@ export default {
   height: 45%;
   width: 25%;
   vertical-align: middle;
-  margin-top: 7px;
+  margin-top: 3px;
   margin-bottom: 2px;
 }
 .tabbar-item span{
