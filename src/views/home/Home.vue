@@ -19,6 +19,7 @@
       @scroll="contentScroll"
       :pullUpLoad="true"
       @pullingUp="loadMore"
+      :pullDownRefresh="true"
     >
       <home-swiper :banners="banners" @swiperImgLoad="swiperImgLoad" />
       <recommend-view :recommends="recommends" />
@@ -74,7 +75,8 @@ export default {
       currentType: "pop", //默认请求的类型
       isShowBackTop: false,
       controlTop: 0,
-      isTabShow: false
+      isTabShow: false,
+      saveY: null
     };
   },
   computed: {
@@ -82,6 +84,17 @@ export default {
       //计算属性
       return this.goods[this.currentType].list;
     }
+  },
+  activated() {
+    //进入时
+    this.$refs.scroll.scrollTo(0, this.saveY, 0)
+    this.$refs.scroll.refresh()
+  },
+  deactivated() {
+    //离开时
+    this.saveY = this.$refs.scroll.getScrollY()
+    console.log(this.saveY);
+    
   },
   created() {
     //当组件被创建时调用，调用methods里的方法
@@ -157,7 +170,7 @@ export default {
       //判断backtop是否显示
       this.isShowBackTop = -position.y > 750;
       //判断是否显示tabcontrol
-      this.isTabShow = -position.y > 546;
+      this.isTabShow = -position.y > this.controlTop;
     },
     //上拉加载更多（子组件的事件）
     loadMore() {

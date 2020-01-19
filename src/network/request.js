@@ -1,8 +1,7 @@
 import Axios from 'axios'
 export function request(config) {
   const instance = Axios.create({
-    // baseURL: 'http://123.207.32.32:8000/api/w1', //接口1
-    baseURL: 'http://106.54.54.237:8000/api/w1', //接口2
+    //联系我给你获得途径
     timeout: 5000
   })
 
