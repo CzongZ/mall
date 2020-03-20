@@ -5,12 +5,12 @@
     </nav-bar>
     <!-- tabcontrol的复件用于吸顶 -->
     <tab-control
-        class="tab-con-show"
-        :titles="['流行', '新款', '精选']"
-        @tabClick="tabClick"
-        ref="tabControl1"
-        v-show="isTabShow"
-      />
+      class="tab-con-show"
+      :titles="['流行', '新款', '精选']"
+      @tabClick="tabClick"
+      ref="tabControl1"
+      v-show="isTabShow"
+    />
 
     <scroll
       class="content"
@@ -24,11 +24,7 @@
       <home-swiper :banners="banners" @swiperImgLoad="swiperImgLoad" />
       <recommend-view :recommends="recommends" />
       <feature-view />
-      <tab-control
-        :titles="['流行', '新款', '精选']"
-        @tabClick="tabClick"
-        ref="tabControl"
-      />
+      <tab-control :titles="['流行', '新款', '精选']" @tabClick="tabClick" ref="tabControl" />
       <goods-list :goods="showGoods" />
     </scroll>
     <back-top @click.native="backTop()" v-show="isShowBackTop" />
@@ -87,14 +83,13 @@ export default {
   },
   activated() {
     //进入时
-    this.$refs.scroll.scrollTo(0, this.saveY, 0)
-    this.$refs.scroll.refresh()
+    this.$refs.scroll.scrollTo(0, this.saveY, 0);
+    this.$refs.scroll.refresh();
   },
   deactivated() {
     //离开时
-    this.saveY = this.$refs.scroll.getScrollY()
+    this.saveY = this.$refs.scroll.getScrollY();
     console.log(this.saveY);
-    
   },
   created() {
     //当组件被创建时调用，调用methods里的方法
@@ -158,8 +153,8 @@ export default {
           this.currentType = "sell";
           break;
       }
-      this.$refs.tabControl.currentIndex = index
-      this.$refs.tabControl1.currentIndex = index
+      this.$refs.tabControl.currentIndex = index;
+      this.$refs.tabControl1.currentIndex = index;
     },
     //回到顶部  ref是获取子组件本身对象
     backTop() {
@@ -211,5 +206,12 @@ export default {
   left: 0;
   right: 0;
   z-index: 9;
+}
+.pull-down {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  font-size: 13px;
+  top: -25px;
 }
 </style>

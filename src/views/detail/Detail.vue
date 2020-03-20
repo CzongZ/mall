@@ -5,13 +5,15 @@
       <van-swipe :swipe_type="{
         images: this.topImages,
         autoplay: 3500,
-        width: 320,
         height: 300
         }"></van-swipe>
         <detail-base-info :goods="goods"/>
         <detail-shop-info :shop="shop"/>
+        <detail-goods-info :detailInfo="detailInfo" />
+      <detail-param-info :paramInfo="itemParams" />
+
       </scroll>
-      <goods-action/>
+      <goods-action />
   </div>
 </template>
 
@@ -22,6 +24,8 @@ import DetailSwipe from '@/views/detail/childComps/DetailSwipe';
 import DetailNavBar from './childComps/DetailNavBar';
 import DetailBaseInfo from './childComps/DetailBaseInfo';
 import DetailShopInfo from './childComps/DetailShopInfo';
+import DetailGoodsInfo from './childComps/DetailGoodsInfo';
+import DetailParamInfo from './childComps/DetailParamInfo';
 
 
 import Scroll from '@/components/common/scroll/Scroll';
@@ -33,22 +37,28 @@ export default {
       iid: null,
       topImages: null,
       goods: {},
-      shop: {}
+      shop: {},
+      detailInfo: {},
+      itemParams: {}
     }
   },
   activated() {
     //每次打开返回顶部
     this.$refs.scroll1.scrollTo(0, 0, 0)
-
+    //取出商品iid
     this.iid = this.$route.params.iid
     getDetail(this.iid).then(res => {
       const data = res.result
       //1.请求商品轮播图片
       this.topImages = data.itemInfo.topImages
-      //2.请求商品参数
+      //2.请求商品信息
       this.goods = new Goods(data.itemInfo, data.columns, data.shopInfo.services)
       //3.请求店铺参数
       this.shop = new Shop(data.shopInfo)
+      //4.请求详情信息
+      this.detailInfo = data.detailInfo
+      //5.请求参数信息
+      this.itemParams = data.itemParams
     })
   },
   components: {
@@ -57,6 +67,8 @@ export default {
     DetailNavBar,
     DetailBaseInfo,
     DetailShopInfo,
+    DetailGoodsInfo,
+    DetailParamInfo,
     Scroll,
   }
 }

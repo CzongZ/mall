@@ -1,6 +1,5 @@
 <template>
   <van-swipe :autoplay="swipe_type.autoplay"
-             :width="swipe_type.width"
              :height="swipe_type.height"
              :indicator-color="swipe_type.indicator_color"
              >

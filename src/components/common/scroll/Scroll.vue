@@ -37,7 +37,7 @@
       }
     },
     mounted() {
-		  setTimeout(this.__initScroll, 20)
+		  setTimeout(this.__initScroll, 100)
     },
     methods: {
 		  __initScroll() {
@@ -79,9 +79,9 @@
           this.$emit('pullingUp')
         })
         // 4.监听顶部下拉
-        this.scroll.on('pullingDown', () => {
-          console.log("--下拉刷新--");
-        })
+        // this.scroll.on('pullingDown', () => {
+        //   console.log("--下拉刷新--");
+        // })
       },
       refresh() {
         //scroll 刷新 重新计算高度
@@ -102,7 +102,7 @@
     },
     watch: {
 		  data() {
-        setTimeout(this.refresh, 50)
+        setTimeout(this.refresh, 100)
       }
     }
 	}

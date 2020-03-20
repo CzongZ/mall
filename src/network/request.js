@@ -1,7 +1,7 @@
 import Axios from 'axios'
 export function request(config) {
   const instance = Axios.create({
-    //联系我给你获得途径
+    baseURL: "http://123.207.32.32:8000/api/wh",
     timeout: 5000
   })
 
